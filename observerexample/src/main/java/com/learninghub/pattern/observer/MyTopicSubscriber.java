@@ -1,18 +1,18 @@
 package com.learninghub.pattern.observer;
 
-public class MyObserver implements Observer {
+public class MyTopicSubscriber implements Observer {
 
     private Subject subject;
     private String name;
 
-    public MyObserver(String name) {
+    public MyTopicSubscriber(String name) {
         this.name = name;
     }
 
     @Override
     public void update() {
-        String message = (String) subject.getMessage();
-        System.out.println("Observer " + this.name + " received new message from the topic = " + message);
+        String message = (String) subject.getUpdate();
+        System.out.println(this.name + " received new message : " + message);
     }
 
     @Override

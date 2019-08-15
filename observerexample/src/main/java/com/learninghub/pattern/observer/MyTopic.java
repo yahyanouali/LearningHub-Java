@@ -12,29 +12,28 @@ public class MyTopic implements Subject {
         observers = new ArrayList<Observer>();
     }
 
-    public void register(Observer observer) throws Exception {
-
+    public void register(Observer observer) {
         if (observer == null)
-            throw new Exception("observer must be not Null");
+            throw new NullPointerException("observer must be not null");
         if (!observers.contains(observer))
             observers.add(observer);
     }
 
     public void unregister(Observer observer) {
-        if (observers.contains(observer))
-            observers.remove(observer);
+        observers.remove(observer);
     }
 
-    public void notifyAllObservers() {
+    public void notifyObservers() {
         observers.forEach(observer -> observer.update());
     }
 
-    public void sendMessage(String message) {
+    public void postMessage(String message) {
+        System.out.println("Message Posted to Topic : " + message);
         this.message = message;
-        notifyAllObservers();
+        notifyObservers();
     }
 
-    public String getMessage() {
+    public String getUpdate() {
         return message;
     }
 }
